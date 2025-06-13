@@ -3,7 +3,7 @@ import { ColumnService } from './column.service';
 import { Column } from './entities/column.entity';
 import { CreateColumnInput } from './dto/create-column.input';
 import { UpdateColumnInput } from './dto/update-column.input';
-import { UserId } from '../common/decorators/user-id.decorator'; // 👈 Asegúrate de importar esto
+import { UserId } from '../common/decorators/user-id.decorator';
 
 @Resolver(() => Column)
 export class ColumnResolver {

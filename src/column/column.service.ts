@@ -30,12 +30,10 @@ export class ColumnService {
     const column = await this.prisma.column.findUnique({ where: { id } });
     if (!column) throw new Error('Column not found');
 
-    // Evitar eliminar columnas base
     const baseColumns = ['TODO', 'IN PROGRESS', 'DONE'];
     if (baseColumns.includes(column.name.toUpperCase()))
       throw new Error('No puedes eliminar columnas base');
 
-    // Mover tareas a TODO
     const todoColumn = await this.prisma.column.findFirst({
       where: { name: 'TODO', userId: column.userId },
     });

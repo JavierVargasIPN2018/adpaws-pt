@@ -3,7 +3,7 @@ import { TaskService } from './task.service';
 import { Task } from './entities/task.entity';
 import { CreateTaskInput } from './dto/create-task.input';
 import { UpdateTaskInput } from './dto/update-task.input';
-import { UserId } from '../common/decorators/user-id.decorator'; // 👈 Importa el decorador
+import { UserId } from '../common/decorators/user-id.decorator';
 
 @Resolver(() => Task)
 export class TaskResolver {
