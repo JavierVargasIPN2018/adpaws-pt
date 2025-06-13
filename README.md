@@ -1,98 +1,156 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Todo App Backend - Prueba Técnica Adpaws
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este proyecto es una API backend desarrollada con **NestJS**, **GraphQL (Apollo)**, **Prisma** y **PostgreSQL**, diseñada para manejar una aplicación de tareas estilo tablero Kanban.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🎓 Requisitos cumplidos de la prueba técnica
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### 1. CRUD de tareas
 
-## Project setup
+* Mutation y query completas para: crear, actualizar, eliminar y listar tareas.
 
-```bash
-$ npm install
-```
+### 2. Columnas iniciales
 
-## Compile and run the project
+* Al crear un nuevo usuario, se generan automáticamente 3 columnas base: `TODO`, `IN PROGRESS` y `DONE`.
+* El usuario puede agregar hasta 2 columnas personalizadas.
+* Las columnas base están protegidas contra eliminación.
 
-```bash
-# development
-$ npm run start
+### 3. Reordenamiento de columnas
 
-# watch mode
-$ npm run start:dev
+* Cada columna tiene un campo `order`.
+* El orden se puede modificar con `updateColumn`.
+* ✔️ (Básico). Se recomienda agregar una mutation `reorderColumns` para mayor claridad.
 
-# production mode
-$ npm run start:prod
-```
+### 4. Reubicación de tareas al eliminar columna
 
-## Run tests
+* Si se elimina una columna personalizada que contiene tareas, éstas se mueven automáticamente a la columna `TODO`.
+
+---
+
+## 🚀 Tecnologías utilizadas
+
+* **NestJS**
+* **TypeScript**
+* **GraphQL con Apollo Server**
+* **Prisma (ORM)**
+* **PostgreSQL**
+* **Docker y Docker Compose**
+
+---
+
+## 🧰 Instalación local
+
+### 1. Clona el repositorio
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/tu_usuario/tu_repositorio.git
+cd tu_repositorio
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Instala dependencias
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 3. Crea el archivo `.env`
 
-## Resources
+```bash
+cp .env.example .env
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+Y verifica que tenga:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```env
+DATABASE_URL="postgresql://postgres:postgres@db:5432/todoapp"
+```
 
-## Support
+### 4. Levanta la base de datos y la app con Docker
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+docker-compose up -d --build
+```
 
-## Stay in touch
+Esto:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+* Levanta PostgreSQL
+* Construye la app de NestJS
+* Aplica las migraciones y el `seed`
 
-## License
+### 5. Accede a GraphQL Playground
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```
+http://localhost:3000/graphql
+```
+
+Agrega en la pestaña de "HTTP Headers":
+
+```json
+{
+  "x-user-id": "<id_del_usuario_creado_por_el_seed>"
+}
+```
+
+---
+
+## ✍️ Ejemplos de queries
+
+### Obtener tareas:
+
+```graphql
+query {
+  tasks {
+    id
+    title
+    columnId
+  }
+}
+```
+
+### Crear tarea:
+
+```graphql
+mutation {
+  createTask(input: {
+    title: "Nueva tarea",
+    description: "Detalles",
+    columnId: "<id_columna>"
+  }) {
+    id
+    title
+  }
+}
+```
+
+---
+
+## 🛠️ Build manual sin Docker
+
+```bash
+npx prisma migrate dev
+npm run seed
+npm run start:dev
+```
+
+---
+
+## 👁️ Bonus: Uso de headers simulando auth
+
+Se implementó un decorador `@UserId()` que toma el `userId` desde los headers:
+
+```json
+{
+  "x-user-id": "uuid-del-usuario"
+}
+```
+
+Esto evita exponer `userId` como argumento en cada query.
+
+---
+
+## 🚫 Seguridad
+
+* Las columnas base no pueden eliminarse.
+* Las tareas huérfanas se reubican a `TODO`.
+
